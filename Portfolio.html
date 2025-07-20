@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebWizJay | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background: #333;
+      color: white;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: #111;
+      padding: 100px 20px 20px;
+      text-align: center;
+      margin-top: 70px;
+      color: white;
+    }
+
+    .highlight {
+      color: #00aaff;
+    }
+
+    .cta-button {
+      background-color: #0077ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-top: 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 60px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .project-info {
+      text-align: center;
+    }
+
+    .project-info h3 {
+      margin-bottom: 5px;
+    }
+
+    .project-info a {
+      color: #0077ff;
+      text-decoration: underline;
+    }
+
+    .iframe-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      height: 300px;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    .iframe-container:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    }
+
+    .iframe-container:hover iframe {
+      pointer-events: auto;
+    }
+
+    .about-text, .contact-form {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      background: #0077ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+      margin-top: 40px;
+    }
+
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <span class="logo">WebWizJay</span>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <span class="highlight">WebWizJay</span></h1>
+      <p>I design and build beautiful websites for businesses.</p>
+      <a href="#projects" class="cta-button">View My Work</a>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2 class="section-title">My Projects</h2>
+    <div class="project-grid">
+      <div class="project-info">
+        <h3>Spark Trading Company Ltd.</h3>
+        <p><a href="https://sparktrading.co.ke" target="_blank">https://sparktrading.co.ke</a></p>
+        <div class="iframe-container">
+          <iframe src="https://sparktrading.co.ke" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="about-text">
+      I'm a passionate web developer focused on creating elegant, responsive, and performance-optimized websites. I collaborate with startups and businesses to bring their vision to life with precision and creativity.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" action="mailto:your@email.com" method="post">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+  <p>&copy; 2025 WebWizJay • All Rights Reserved</p>
+  <div class="social-icons">
+    <!-- Fiverr Icon -->
+    <a href="https://www.fiverr.com/yourusername" target="_blank" title="Hire me on Fiverr">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Fiverr_Logo_2022.svg"
+           alt="Fiverr"
+           style="width: 40px; height: 40px; border-radius: 8px; background: white; padding: 5px;">
+    </a>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/254115652424" target="_blank" title="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"
+         style="font-size: 38px; color: #25D366; padding: 5px; background: white; border-radius: 8px;"></i>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
