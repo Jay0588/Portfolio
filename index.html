@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebWiz — Crafting Next‑Gen Websites</title>
+  <meta name="description" content="We build blazing‑fast, conversion‑focused sites and apps using modern stacks." />
+  <meta name="theme-color" content="#070812" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="particles" class="bg-canvas"></canvas>
+
+  <!-- Custom cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <span>WebWiz</span>
+      </div>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#stack">Stack</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun">☀</span><span class="moon">🌙</span>
+        </button>
+        <a class="cta" href="#contact">Get a Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="section hero" id="home">
+    <div class="container center">
+      <h1 class="title reveal">WebWiz — Crafting Next‑Gen Websites</h1>
+      <p class="subtitle reveal delay-1">
+        We build blazing‑fast, conversion‑focused sites and apps using React, Next.js, and modern stacks.
+      </p>
+      <div class="cta-row reveal delay-2">
+        <a href="#work" class="btn ghost">View Projects →</a>
+        <a href="#contact" class="btn gradient">Get a Quote</a>
+      </div>
+      <div class="badges reveal delay-3">
+        <span class="badge">Next.js</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">Tailwind</span>
+        <span class="badge">Motion</span>
+        <span class="badge">SEO & CWV</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2 reveal">Services</h2>
+        <p class="muted reveal delay-1">From concept to launch, we deliver performant web experiences with measurable impact.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="icon">🧩</div>
+          <h3>Website Development</h3>
+          <p>Lightning-fast, accessible, SEO-friendly websites built on Next.js.</p>
+        </div>
+        <div class="card reveal delay-1">
+          <div class="icon">🛒</div>
+          <h3>E‑Commerce</h3>
+          <p>Scalable storefronts with payments, inventory, analytics, and headless CMS.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="icon">📊</div>
+          <h3>Web Apps & Dashboards</h3>
+          <p>Secure, data-rich apps with auth, charts, and real-time updates.</p>
+        </div>
+        <div class="card reveal delay-3">
+          <div class="icon">🚀</div>
+          <h3>SEO & Performance</h3>
+          <p>Core Web Vitals, schema, and audits to outrank competition.</p>
+        </div>
+        <div class="card reveal delay-4">
+          <div class="icon">🛡️</div>
+          <h3>Maintenance & Hosting</h3>
+          <p>CI/CD, backups, monitoring, and on-call support.</p>
+        </div>
+        <div class="card reveal delay-5">
+          <div class="icon">✨</div>
+          <h3>Branding & UI/UX</h3>
+          <p>Design systems, wireframes, and delightful interactions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2 reveal">Recent Work</h2>
+        <div class="filters reveal delay-1">
+          <button class="chip active" data-tag="All">All</button>
+          <button class="chip" data-tag="E‑commerce">E‑commerce</button>
+          <button class="chip" data-tag="Portfolio">Portfolio</button>
+          <button class="chip" data-tag="Business">Business</button>
+          <button class="chip" data-tag="Landing">Landing</button>
+          <button class="chip" data-tag="Web App">Web App</button>
+        </div>
+      </div>
+      <div class="grid grid-3" id="projects">
+        <!-- Cards injected by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack" class="section">
+    <div class="container">
+      <h2 class="h2 reveal">Tech Stack</h2>
+      <div class="grid grid-6 reveal delay-1" id="stack-grid">
+        <!-- Filled by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container center">
+      <h2 class="h2 reveal">What Clients Say</h2>
+      <div class="testimonial card reveal delay-1">
+        <p id="quote">“WebWiz transformed our idea into a blazing-fast site that actually converts.”</p>
+        <div class="who"><span id="who">— A. Mehta</span> <span id="role">Founder, D2C Brand</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="h2 reveal">Let’s Build Something</h2>
+      <p class="muted reveal delay-1">Tell us about your project. We’ll reply within 24 hours with a plan and estimate.</p>
+      <form id="contact-form" class="form reveal delay-2">
+        <div class="grid grid-2">
+          <input required placeholder="Your Name" name="name"/>
+          <input required type="email" placeholder="Email" name="email"/>
+        </div>
+        <input placeholder="Company / Website (optional)" name="company"/>
+        <textarea required rows="5" placeholder="What do you need? Timeline, budget, and goals." name="message"></textarea>
+        <div class="form-row">
+          <div class="contacts">
+            <a href="mailto:jaypindoria05@gmail.com">✉ jaypindoria05@gmail.com</a>
+            <a href="tel:+918866081530">📞 +91 8866081539</a>
+          </div>
+          <button type="submit" class="btn gradient">Send</button>
+        </div>
+        <p id="form-status" class="success hidden">Thanks! Your message has been queued. Connect a real backend to go live.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand small">
+        <div class="brand-mark"></div>
+        <span>© <span id="year"></span> WebWiz. All rights reserved.</span>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="GitHub">🐱</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Website">🌐</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
