@@ -31,8 +31,10 @@
             overflow: hidden;
             border-right: 2px solid #6366f1;
             white-space: nowrap;
-            animation: typing 2s steps(13) 1s forwards, blink 0.75s step-end infinite;
             width: 0;
+        }
+        .site-reveal.visible .typewriter {
+            animation: typing 2s steps(13) 0.5s forwards, blink 0.75s step-end infinite;
         }
         @keyframes typing {
             from { width: 0; }
@@ -136,6 +138,12 @@
             background: rgba(255,255,255,0.8);
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
+        body.light-mode .nav-bar a {
+            color: #1a1a1a;
+        }
+        body.light-mode .nav-bar a:hover {
+            color: #6366f1;
+        }
         body.light-mode .glass-card {
             background: rgba(0,0,0,0.03);
             border: 1px solid rgba(0,0,0,0.06);
@@ -144,9 +152,16 @@
             background: rgba(0,0,0,0.05);
             border-color: rgba(99,102,241,0.2);
         }
+        body.light-mode .text-white,
+        body.light-mode h1,
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode .font-display {
+            color: #1a1a1a;
+        }
         body.light-mode .text-gray-400 { color: #6b7280; }
-        body.light-mode .text-gray-500 { color: #9ca3af; }
-        body.light-mode .text-gray-600 { color: #6b7280; }
+        body.light-mode .text-gray-500 { color: #6b7280; }
+        body.light-mode .text-gray-600 { color: #4b5563; }
         body.light-mode .site-frame {
             background: #fff;
             border: 1px solid rgba(0,0,0,0.08);
@@ -185,6 +200,12 @@
         body.light-mode footer {
             border-color: rgba(0,0,0,0.05);
         }
+        body.light-mode footer a {
+            color: #6b7280;
+        }
+        body.light-mode footer a:hover {
+            color: #1a1a1a;
+        }
         body.light-mode .mobile-menu {
             background: rgba(248,249,250,0.98);
         }
@@ -202,6 +223,35 @@
             border-color: rgba(0,0,0,0.1);
             color: #1a1a1a;
         }
+        body.light-mode .gradient-text {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.light-mode .preloader {
+            background: #f8f9fa;
+        }
+        body.light-mode .preloader-text {
+            color: #1a1a1a;
+        }
+        body.light-mode .whatsapp-float {
+            box-shadow: 0 8px 32px rgba(37,211,102,0.3);
+        }
+        body.light-mode .site-dot {
+            opacity: 0.8;
+        }
+        body.light-mode .tag {
+            background: rgba(99,102,241,0.08);
+            border-color: rgba(99,102,241,0.15);
+            color: #4f46e5;
+        }
+        body.light-mode .skill-card::before {
+            background: rgba(79,70,229,0.9);
+        }
+        body.light-mode .skill-card::after {
+            border-top-color: rgba(79,70,229,0.9);
+        }
 
         /* Page Preloader */
         .preloader {
@@ -212,7 +262,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.8s;
         }
         .preloader.hidden {
             opacity: 0;
@@ -232,22 +284,25 @@
             opacity: 0;
             transform: translateY(100%);
         }
-        .preloader-text span:nth-child(1) { animation-delay: 0.1s; }
-        .preloader-text span:nth-child(2) { animation-delay: 0.2s; }
-        .preloader-text span:nth-child(3) { animation-delay: 0.3s; }
-        .preloader-text span:nth-child(4) { animation-delay: 0.4s; }
-        .preloader-text span:nth-child(5) { animation-delay: 0.5s; }
-        .preloader-text span:nth-child(6) { animation-delay: 0.6s; }
-        .preloader-text span:nth-child(7) { animation-delay: 0.7s; }
-        .preloader-text span:nth-child(8) { animation-delay: 0.8s; }
-        .preloader-text span:nth-child(9) { animation-delay: 0.9s; }
+        .preloader-text span:nth-child(1) { animation-delay: 0.15s; }
+        .preloader-text span:nth-child(2) { animation-delay: 0.3s; }
+        .preloader-text span:nth-child(3) { animation-delay: 0.45s; }
+        .preloader-text span:nth-child(4) { animation-delay: 0.6s; }
+        .preloader-text span:nth-child(5) { animation-delay: 0.75s; }
+        .preloader-text span:nth-child(6) { animation-delay: 0.9s; }
+        .preloader-text span:nth-child(7) { animation-delay: 1.05s; }
+        .preloader-text span:nth-child(8) { animation-delay: 1.2s; }
+        .preloader-text span:nth-child(9) { animation-delay: 1.35s; }
+        .preloader-text span:nth-child(10) { animation-delay: 1.5s; }
+        .preloader-text span:nth-child(11) { animation-delay: 1.65s; }
+        .preloader-text span:nth-child(12) { animation-delay: 1.8s; }
         .preloader-bar {
             position: absolute;
             bottom: 0;
             left: 0;
             height: 2px;
             background: linear-gradient(90deg, #6366f1, #c084fc);
-            animation: preloaderProgress 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation: preloaderProgress 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             transform-origin: left;
         }
         @keyframes preloaderReveal {
@@ -257,6 +312,25 @@
             from { transform: scaleX(0); }
             to { transform: scaleX(1); }
         }
+
+        /* Site Reveal Animation - after preloader */
+        body.preloading {
+            overflow: hidden;
+        }
+        .site-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .site-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .site-reveal-delay-1 { transition-delay: 0.1s; }
+        .site-reveal-delay-2 { transition-delay: 0.2s; }
+        .site-reveal-delay-3 { transition-delay: 0.3s; }
+        .site-reveal-delay-4 { transition-delay: 0.4s; }
+        .site-reveal-delay-5 { transition-delay: 0.5s; }
         .noise { position: fixed; inset: 0; z-index: 9990; opacity: 0.02; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
         .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: #6366f1; z-index: 10000; transform-origin: left; transform: scaleX(0); }
         .gradient-text { background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -335,7 +409,13 @@
         .line-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(99,102,241,0.5), transparent); transform: scaleX(0); transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
         .line-divider.active { transform: scaleX(1); }
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0a0a0a; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
-        @media (max-width: 768px) { .site-frame iframe { aspect-ratio: 4/3; height: auto; } .hamburger { display: block; } .desktop-nav { display: none; } .mobile-menu-item { font-size: 2rem; } }
+        @media (max-width: 768px) {
+            .preloader-text { font-size: 1.5rem; }
+            .theme-toggle { bottom: 80px; left: 16px; width: 40px; height: 40px; }
+            .whatsapp-float { bottom: 80px; right: 16px; width: 48px; height: 48px; }
+            .site-frame iframe { aspect-ratio: 4/3; height: auto; }
+            .mobile-menu-item { font-size: 2rem; }
+            .mobile-menu-socials { gap: 16px; } .site-frame iframe { aspect-ratio: 4/3; height: auto; } .hamburger { display: block; } .desktop-nav { display: none; } .mobile-menu-item { font-size: 2rem; } }
         @media (min-width: 769px) { .mobile-menu { display: none !important; } }
         body.menu-open { overflow: hidden; }
 
@@ -569,7 +649,7 @@
 <base target="_blank">
 <base target="_blank">
 </head>
-<body>
+<body class="preloading">
     <div class="preloader" id="preloader">
         <div class="preloader-text">
             <span>J</span><span>a</span><span>y</span><span>&nbsp;</span><span>P</span><span>i</span><span>n</span><span>d</span><span>o</span><span>r</span><span>i</span><span>a</span>
@@ -648,16 +728,16 @@
     </div>
 
     <nav class="nav-bar" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="font-display text-xl font-bold anim-slide-down d1">JP<span class="text-indigo-500">.</span></a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+            <a href="#home" class="font-display text-lg sm:text-xl font-bold">JP<span class="text-indigo-500">.</span></a>
             <div class="desktop-nav hidden md:flex items-center gap-8">
-                <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d2">About</a>
-                <a href="#work" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d3">Work</a>
-                <a href="#skills" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d4">Skills</a>
-                <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d5">Contact</a>
+                <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+                <a href="#work" class="text-sm text-gray-400 hover:text-white transition-colors">Work</a>
+                <a href="#skills" class="text-sm text-gray-400 hover:text-white transition-colors">Skills</a>
+                <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
             </div>
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="hidden md:inline-flex text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors anim-slide-down d6">Let's Talk</a>
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="hidden md:inline-flex text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors">Let's Talk</a>
                 <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -667,22 +747,22 @@
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden" id="home">
+    <section class="min-h-screen flex items-center pt-20 md:pt-24 relative overflow-hidden site-reveal" id="home">
         <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent line-divider" id="heroLine1"></div>
         <div class="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent line-divider" id="heroLine2"></div>
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
             <div class="max-w-3xl">
-                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-6 anim-slide-left d1"><span class="inline-block w-8 h-px bg-indigo-400 mr-3 align-middle"></span><span class="typewriter">Web Developer</span></p>
-                <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8">
-                    <div><span class="block anim-slide-up d2">Jay</span></div>
-                    <div><span class="block gradient-text anim-slide-up d3">Pindoria</span></div>
+                <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6 site-reveal site-reveal-delay-1"><span class="inline-block w-6 sm:w-8 h-px bg-indigo-400 mr-2 sm:mr-3 align-middle"></span><span class="typewriter">Web Developer</span></p>
+                <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-6 sm:mb-8">
+                    <div><span class="block site-reveal site-reveal-delay-1">Jay</span></div>
+                    <div><span class="block gradient-text site-reveal site-reveal-delay-2">Pindoria</span></div>
                 </h1>
-                <p class="text-gray-400 text-lg max-w-lg mb-10 leading-relaxed anim-slide-right d4">Building modern websites for businesses. Based in India, working worldwide.</p>
-                <div class="flex flex-wrap gap-4 anim-scale-pop d5">
-                    <a href="#work" class="btn-primary">View My Work<i data-lucide="arrow-down" class="w-4 h-4"></i></a>
-                    <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+                <p class="text-gray-400 text-base sm:text-lg max-w-lg mb-8 sm:mb-10 leading-relaxed site-reveal site-reveal-delay-3">Building modern websites for businesses. Based in India, working worldwide.</p>
+                <div class="flex flex-wrap gap-3 sm:gap-4 site-reveal site-reveal-delay-4">
+                    <a href="#work" class="btn-primary text-sm sm:text-base py-3 px-5 sm:py-3.5 sm:px-8">View My Work<i data-lucide="arrow-down" class="w-4 h-4"></i></a>
+                    <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp text-sm sm:text-base py-3 px-5 sm:py-3.5 sm:px-8"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
                 </div>
-                <div class="mt-12 flex gap-6 anim-bounce d6">
+                <div class="mt-8 sm:mt-12 flex gap-4 sm:gap-6 site-reveal site-reveal-delay-5">
                     <a href="https://github.com/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
                     <a href="https://linkedin.com/in/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
                 </div>
@@ -690,7 +770,7 @@
         </div>
     </section>
 
-    <section class="py-32 relative" id="about">
+    <section class="py-32 relative site-reveal site-reveal-delay-2" id="about">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
@@ -713,7 +793,7 @@
         </div>
     </section>
 
-    <section class="py-32 border-t border-white/5" id="work">
+    <section class="py-32 border-t border-white/5 site-reveal site-reveal-delay-2" id="work">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
                 <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-left"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Selected Work</p>
@@ -746,61 +826,61 @@
         </div>
     </section>
 
-    <section class="py-32 border-t border-white/5" id="skills">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-up"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Capabilities</p>
-                <h2 class="font-display text-4xl md:text-5xl font-bold reveal-scale">Tech Stack</h2>
+    <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-3" id="skills">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16">
+                <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-up"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Capabilities</p>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold reveal-scale">Tech Stack</h2>
             </div>
-            <div class="flex flex-wrap justify-center gap-6 skills-grid">
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="95%" style="transition-delay: 0.05s"><i data-lucide="code-2" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">HTML5</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.1s"><i data-lucide="palette" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">CSS3</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="85%" style="transition-delay: 0.15s"><i data-lucide="file-json" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">JavaScript</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.2s"><i data-lucide="atom" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">React</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="70%" style="transition-delay: 0.25s"><i data-lucide="server" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">Node.js</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="80%" style="transition-delay: 0.3s"><i data-lucide="database" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">PHP</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.35s"><i data-lucide="table" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">MySQL</span></div>
-                <div class="glass-card skill-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.4s"><i data-lucide="wind" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">Tailwind</span></div>
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-6 skills-grid">
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="95%" style="transition-delay: 0.05s"><i data-lucide="code-2" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">HTML5</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.1s"><i data-lucide="palette" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">CSS3</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="85%" style="transition-delay: 0.15s"><i data-lucide="file-json" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">JavaScript</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.2s"><i data-lucide="atom" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">React</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="70%" style="transition-delay: 0.25s"><i data-lucide="server" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Node.js</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="80%" style="transition-delay: 0.3s"><i data-lucide="database" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">PHP</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.35s"><i data-lucide="table" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">MySQL</span></div>
+                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.4s"><i data-lucide="wind" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Tailwind</span></div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 border-t border-white/5" id="contact">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-up"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Get In Touch</p>
-            <h2 class="font-display text-5xl md:text-6xl font-bold mb-8 reveal-rotate">Let's work<br><span class="gradient-text">together</span></h2>
-            <p class="text-gray-400 text-lg mb-12 max-w-lg mx-auto reveal-up">Have a project in mind? I'm available for new work. Reach out anytime.</p>
-            <div class="flex flex-wrap justify-center gap-4 mb-16 reveal-scale">
-                <a href="mailto:jaypindoria05@gmail.com" class="btn-primary"><i data-lucide="mail" class="w-4 h-4"></i>jaypindoria05@gmail.com</a>
-                <a href="tel:+918866081530" class="btn-outline"><i data-lucide="phone" class="w-4 h-4"></i>+91 8866081530</a>
-                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Me</a>
+    <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-4" id="contact">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-up"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Get In Touch</p>
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 reveal-rotate">Let's work<br><span class="gradient-text">together</span></h2>
+            <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto reveal-up">Have a project in mind? I'm available for new work. Reach out anytime.</p>
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-16 reveal-scale">
+                <a href="mailto:jaypindoria05@gmail.com" class="btn-primary text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><i data-lucide="mail" class="w-4 h-4"></i>jaypindoria05@gmail.com</a>
+                <a href="tel:+918866081530" class="btn-outline text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><i data-lucide="phone" class="w-4 h-4"></i>+91 8866081530</a>
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Me</a>
             </div>
-            <div class="glass-card rounded-2xl p-8 md:p-12 text-left reveal-scale">
+            <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 text-left reveal-scale">
                 <form onsubmit="event.preventDefault(); showNotif('Message sent! I will reply soon.');">
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div class="reveal-up" style="transition-delay: 0.1s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Name</label><input type="text" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Your name"></div>
-                        <div class="reveal-up" style="transition-delay: 0.2s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Email</label><input type="email" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="your@email.com"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                        <div class="reveal-up" style="transition-delay: 0.1s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Name</label><input type="text" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors text-sm sm:text-base" placeholder="Your name"></div>
+                        <div class="reveal-up" style="transition-delay: 0.2s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Email</label><input type="email" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors text-sm sm:text-base" placeholder="your@email.com"></div>
                     </div>
-                    <div class="mb-6 reveal-up" style="transition-delay: 0.3s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Message</label><textarea rows="4" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors resize-none" placeholder="Tell me about your project..."></textarea></div>
-                    <button type="submit" class="btn-primary reveal-scale" style="transition-delay: 0.4s">Send Message<i data-lucide="send" class="w-4 h-4"></i></button>
+                    <div class="mb-4 sm:mb-6 reveal-up" style="transition-delay: 0.3s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Message</label><textarea rows="4" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors resize-none text-sm sm:text-base" placeholder="Tell me about your project..."></textarea></div>
+                    <button type="submit" class="btn-primary reveal-scale text-sm sm:text-base" style="transition-delay: 0.4s">Send Message<i data-lucide="send" class="w-4 h-4"></i></button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <footer class="py-6 sm:py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <a href="#home" class="font-display text-lg font-bold">JP<span class="text-indigo-500">.</span></a>
-                <span class="text-gray-600 text-sm" id="footerYear"></span>
+                <a href="#home" class="font-display text-base sm:text-lg font-bold">JP<span class="text-indigo-500">.</span></a>
+                <span class="text-gray-600 text-xs sm:text-sm" id="footerYear"></span>
             </div>
-            <div class="flex gap-6">
-                <a href="#about" class="text-gray-500 hover:text-white transition-colors text-sm">About</a>
-                <a href="#work" class="text-gray-500 hover:text-white transition-colors text-sm">Work</a>
-                <a href="#skills" class="text-gray-500 hover:text-white transition-colors text-sm">Skills</a>
-                <a href="#contact" class="text-gray-500 hover:text-white transition-colors text-sm">Contact</a>
+            <div class="flex gap-4 sm:gap-6">
+                <a href="#about" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">About</a>
+                <a href="#work" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Work</a>
+                <a href="#skills" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Skills</a>
+                <a href="#contact" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Contact</a>
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-3 sm:gap-4">
                 <a href="https://github.com/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
                 <a href="https://linkedin.com/in/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
                 <a href="https://www.instagram.com/jay.pindoria_/" target="_blank" class="text-gray-500 hover:text-white transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
@@ -850,12 +930,36 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) { closeMobileMenu(); } });
         document.getElementById('footerYear').innerHTML = `&copy; ${new Date().getFullYear()} Jay Pindoria`;
 
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 2200);
-        });
+        // Preloader - 3 seconds then reveal entire site
+        (function() {
+            const preloaderStart = Date.now();
+            const minDuration = 3000;
+
+            function finishPreloader() {
+                const elapsed = Date.now() - preloaderStart;
+                const remaining = Math.max(0, minDuration - elapsed);
+
+                setTimeout(() => {
+                    // Fade out preloader
+                    document.getElementById('preloader').classList.add('hidden');
+
+                    // Remove preloading class and reveal entire site
+                    document.body.classList.remove('preloading');
+
+                    // Trigger all site reveal animations
+                    document.querySelectorAll('.site-reveal').forEach(el => {
+                        el.classList.add('visible');
+                    });
+
+                }, remaining);
+            }
+
+            if (document.readyState === 'complete') {
+                finishPreloader();
+            } else {
+                window.addEventListener('load', finishPreloader);
+            }
+        })();
 
         // Parallax Background on Mouse Move
         document.addEventListener('mousemove', (e) => {
