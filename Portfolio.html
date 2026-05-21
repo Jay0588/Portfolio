@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Pindoria | Web Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        /* Custom cursor removed - using default cursor */
+        .noise { position: fixed; inset: 0; z-index: 9990; opacity: 0.02; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: #6366f1; z-index: 10000; transform-origin: left; transform: scaleX(0); }
+        .gradient-text { background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); transition: all 0.4s ease; }
+        .glass-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(99,102,241,0.2); }
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: #fff; color: #0a0a0a; font-weight: 600; border-radius: 8px; transition: all 0.3s ease; overflow: hidden; position: relative; }
+        .btn-primary:hover { background: #6366f1; color: #fff; transform: translateY(-2px); }
+        .btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: transparent; color: #fff; font-weight: 600; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .btn-outline:hover { border-color: #6366f1; color: #6366f1; }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; font-weight: 600; border-radius: 8px; transition: all 0.3s ease; }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+        .site-frame { background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+        .site-frame-header { background: rgba(255,255,255,0.03); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .site-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .site-frame iframe { width: 100%; aspect-ratio: 4/3; height: auto; border: none; }
+        .tag { display: inline-flex; padding: 6px 14px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15); border-radius: 100px; font-size: 0.75rem; color: #818cf8; }
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: linear-gradient(135deg, #25D366, #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 100; box-shadow: 0 8px 32px rgba(37,211,102,0.3); transition: all 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,10,10,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); transform: translateY(0); }
+        .hamburger { display: none; width: 32px; height: 32px; position: relative; cursor: pointer; z-index: 60; background: none; border: none; padding: 0; }
+        .hamburger-line { position: absolute; left: 4px; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        .hamburger-line:nth-child(1) { top: 8px; }
+        .hamburger-line:nth-child(2) { top: 15px; width: 18px; left: 10px; }
+        .hamburger-line:nth-child(3) { top: 22px; }
+        .hamburger.active .hamburger-line:nth-child(1) { top: 15px; transform: rotate(45deg); background: #6366f1; }
+        .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; transform: translateX(20px); }
+        .hamburger.active .hamburger-line:nth-child(3) { top: 15px; transform: rotate(-45deg); background: #6366f1; }
+        .mobile-menu { position: fixed; inset: 0; z-index: 55; background: rgba(10,10,10,0.98); backdrop-filter: blur(30px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .mobile-menu.active { opacity: 1; visibility: visible; }
+        .mobile-menu-item { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; text-decoration: none; padding: 12px 0; opacity: 0; transform: translateY(40px) rotateX(-20deg); transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); position: relative; display: block; }
+        .mobile-menu.active .mobile-menu-item { opacity: 1; transform: translateY(0) rotateX(0); }
+        .mobile-menu.active .mobile-menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-menu-item::after { content: ''; position: absolute; bottom: 8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #c084fc); transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        .mobile-menu-item:hover::after { width: 100%; }
+        .mobile-menu-item:hover { color: #818cf8; }
+        .mobile-menu-item .menu-number { font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 400; color: #6366f1; margin-right: 16px; opacity: 0.6; }
+        .mobile-menu-footer { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.6s; }
+        .mobile-menu.active .mobile-menu-footer { opacity: 1; transform: translateY(0); }
+        .mobile-menu-footer p { font-size: 0.875rem; color: #6b7280; margin-bottom: 16px; }
+        .mobile-menu-socials { display: flex; justify-content: center; gap: 24px; }
+        .mobile-menu-socials a { color: #6b7280; transition: color 0.3s ease; }
+        .mobile-menu-socials a:hover { color: #fff; }
+        .menu-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+        .menu-particle { position: absolute; width: 2px; height: 2px; background: rgba(99,102,241,0.3); border-radius: 50%; animation: floatParticle 8s infinite ease-in-out; }
+        @keyframes floatParticle { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 50% { transform: translateY(-100px) translateX(50px); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100px) skewX(-5deg); } to { opacity: 1; transform: translateX(0) skewX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(100px) skewX(5deg); } to { opacity: 1; transform: translateX(0) skewX(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInDown { from { opacity: 0; transform: translateY(-80px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scalePop { from { opacity: 0; transform: scale(0.3); } 70% { transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+        @keyframes rotateIn { from { opacity: 0; transform: rotate(-15deg) translateY(50px); } to { opacity: 1; transform: rotate(0) translateY(0); } }
+        @keyframes flipInX { from { opacity: 0; transform: perspective(400px) rotateX(90deg); } 40% { transform: perspective(400px) rotateX(-10deg); } to { opacity: 1; transform: perspective(400px) rotateX(0); } }
+        @keyframes bounceIn { from { opacity: 0; transform: scale(0.1); } 50% { transform: scale(1.1); } 70% { transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes charReveal { from { opacity: 0; transform: translateY(100%) rotate(10deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
+        @keyframes clipReveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+        .anim-slide-left { opacity: 0; animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-slide-right { opacity: 0; animation: slideInRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-slide-up { opacity: 0; animation: slideInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-slide-down { opacity: 0; animation: slideInDown 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-scale-pop { opacity: 0; animation: scalePop 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-rotate { opacity: 0; animation: rotateIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-flip { opacity: 0; animation: flipInX 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-bounce { opacity: 0; animation: bounceIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .anim-clip { opacity: 0; animation: clipReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; } .d5 { animation-delay: 0.5s; } .d6 { animation-delay: 0.6s; } .d7 { animation-delay: 0.7s; } .d8 { animation-delay: 0.8s; }
+        .reveal-left { opacity: 0; transform: translateX(-80px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal-right { opacity: 0; transform: translateX(80px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal-up { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal-scale { opacity: 0; transform: scale(0.8); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal-rotate { opacity: 0; transform: rotate(-5deg) translateY(40px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal-visible { opacity: 1; transform: translateX(0) translateY(0) scale(1) rotate(0); }
+        .line-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(99,102,241,0.5), transparent); transform: scaleX(0); transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
+        .line-divider.active { transform: scaleX(1); }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0a0a0a; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+        @media (max-width: 768px) { .site-frame iframe { aspect-ratio: 4/3; height: auto; } .hamburger { display: block; } .desktop-nav { display: none; } .mobile-menu-item { font-size: 2rem; } }
+        @media (min-width: 769px) { .mobile-menu { display: none !important; } }
+        body.menu-open { overflow: hidden; }
+
+        /* Animated Background Orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 20s infinite ease-in-out;
+        }
+        .bg-orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #6366f1, transparent 70%);
+            top: -10%; left: -10%;
+            animation-delay: 0s;
+        }
+        .bg-orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #c084fc, transparent 70%);
+            bottom: -10%; right: -10%;
+            animation-delay: -7s;
+            animation-duration: 25s;
+        }
+        .bg-orb-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #818cf8, transparent 70%);
+            top: 50%; left: 50%;
+            animation-delay: -14s;
+            animation-duration: 18s;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -80px) scale(1.1); }
+            50% { transform: translate(-60px, 120px) scale(0.9); }
+            75% { transform: translate(80px, 60px) scale(1.05); }
+        }
+
+        /* Floating Dust Particles */
+        .dust-particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: rgba(99,102,241,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: dustFloat 15s infinite ease-in-out;
+            box-shadow: 0 0 6px 1px rgba(99,102,241,0.3);
+        }
+        .dust-particle:nth-child(odd) { 
+            background: rgba(192,132,252,0.5); 
+            box-shadow: 0 0 6px 1px rgba(192,132,252,0.3);
+        }
+        @keyframes dustFloat {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            50% { transform: translateY(-120px) translateX(40px); }
+        }
+
+        /* Geometric Shapes - More Visible */
+        .geo-shape {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            border: 1.5px solid rgba(99,102,241,0.25);
+        }
+        .geo-triangle {
+            width: 0; height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid rgba(99,102,241,0.12);
+            animation: geoSpin 25s infinite linear;
+        }
+        .geo-square {
+            width: 35px; height: 35px;
+            border: 1.5px solid rgba(192,132,252,0.2);
+            animation: geoSpin 20s infinite linear reverse;
+        }
+        .geo-diamond {
+            width: 30px; height: 30px;
+            border: 1.5px solid rgba(129,140,248,0.2);
+            transform: rotate(45deg);
+            animation: geoPulse 8s infinite ease-in-out;
+        }
+        .geo-hexagon {
+            width: 40px; height: 23px;
+            background: rgba(99,102,241,0.08);
+            position: relative;
+            animation: geoFloat 18s infinite ease-in-out;
+        }
+        .geo-hexagon:before, .geo-hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0; border-left: 20px solid transparent; border-right: 20px solid transparent;
+        }
+        .geo-hexagon:before {
+            bottom: 100%; border-bottom: 11.5px solid rgba(99,102,241,0.08);
+        }
+        .geo-hexagon:after {
+            top: 100%; border-top: 11.5px solid rgba(99,102,241,0.08);
+        }
+        .geo-cross {
+            width: 20px; height: 20px;
+            position: relative;
+            animation: geoSpin 15s infinite linear;
+        }
+        .geo-cross:before, .geo-cross:after {
+            content: '';
+            position: absolute;
+            background: rgba(192,132,252,0.3);
+        }
+        .geo-cross:before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
+        .geo-cross:after { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
+        @keyframes geoSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes geoPulse {
+            0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.15; }
+            50% { transform: rotate(45deg) scale(1.3); opacity: 0.3; }
+        }
+        @keyframes geoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Animated Gradient Ring */
+        .gradient-ring {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(99,102,241,0.08);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: ringPulse 10s infinite ease-in-out;
+        }
+        .gradient-ring-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .gradient-ring-2 { bottom: 30%; right: 15%; animation-delay: -5s; animation-duration: 12s; }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
+        }
+
+        /* Wave Lines */
+        .wave-line {
+            position: fixed;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.1), transparent);
+            pointer-events: none;
+            z-index: 0;
+            animation: waveMove 12s infinite ease-in-out;
+        }
+        @keyframes waveMove {
+            0%, 100% { transform: translateX(-10%); opacity: 0.2; }
+            50% { transform: translateX(10%); opacity: 0.5; }
+        }
+
+        /* Animated Grid Lines */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridPulse 8s infinite ease-in-out;
+        }
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: fixed;
+            width: 150px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), rgba(192,132,252,0.6), transparent);
+            pointer-events: none;
+            z-index: 0;
+            animation: shoot 7s infinite ease-in-out;
+            opacity: 0;
+            border-radius: 2px;
+        }
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: rgba(192,132,252,0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(192,132,252,0.4);
+        }
+        @keyframes shoot {
+            0% { transform: translateX(-150px) translateY(50px) rotate(-35deg); opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 150px)) translateY(calc(-100vh - 50px)) rotate(-35deg); opacity: 0; }
+        }
+
+        /* Menu X Animation */
+        .menu-close-x {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .mobile-menu.active .menu-close-x {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+            transition-delay: 0.3s;
+        }
+        .menu-close-x:hover svg {
+            transform: rotate(90deg) scale(1.2);
+        }
+        .menu-close-x:hover line {
+            stroke: #818cf8;
+        }
+    </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-grid"></div>
+    <div class="gradient-ring gradient-ring-1"></div>
+    <div class="gradient-ring gradient-ring-2"></div>
+    <div class="wave-line" style="top: 25%;"></div>
+    <div class="wave-line" style="top: 50%; animation-delay: -4s;"></div>
+    <div class="wave-line" style="top: 75%; animation-delay: -8s;"></div>
+    <div class="dust-particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="dust-particle" style="top: 30%; left: 70%; animation-delay: 2s;"></div>
+    <div class="dust-particle" style="top: 50%; left: 40%; animation-delay: 4s;"></div>
+    <div class="dust-particle" style="top: 70%; left: 80%; animation-delay: 1s;"></div>
+    <div class="dust-particle" style="top: 85%; left: 15%; animation-delay: 3s;"></div>
+    <div class="dust-particle" style="top: 15%; left: 85%; animation-delay: 5s;"></div>
+    <div class="dust-particle" style="top: 60%; left: 25%; animation-delay: 6s;"></div>
+    <div class="dust-particle" style="top: 40%; left: 55%; animation-delay: 7s;"></div>
+    <div class="dust-particle" style="top: 90%; left: 45%; animation-delay: 8s;"></div>
+    <div class="dust-particle" style="top: 20%; left: 60%; animation-delay: 9s;"></div>
+    <div class="dust-particle" style="top: 5%; left: 50%; animation-delay: 1.5s;"></div>
+    <div class="dust-particle" style="top: 75%; left: 5%; animation-delay: 3.5s;"></div>
+    <div class="dust-particle" style="top: 35%; left: 90%; animation-delay: 5.5s;"></div>
+    <div class="dust-particle" style="top: 95%; left: 75%; animation-delay: 7.5s;"></div>
+    <div class="dust-particle" style="top: 45%; left: 10%; animation-delay: 9.5s;"></div>
+    <!-- Geometric Shapes -->
+    <div class="geo-shape geo-triangle" style="top: 15%; left: 8%; animation-delay: 0s;"></div>
+    <div class="geo-shape geo-square" style="top: 70%; left: 85%; animation-delay: -5s;"></div>
+    <div class="geo-shape geo-diamond" style="top: 40%; left: 92%; animation-delay: -10s;"></div>
+    <div class="geo-shape geo-hexagon" style="top: 80%; left: 12%; animation-delay: -3s;"></div>
+    <div class="geo-shape geo-cross" style="top: 25%; left: 75%; animation-delay: -8s;"></div>
+    <div class="geo-shape geo-triangle" style="top: 60%; left: 5%; animation-delay: -12s; transform: scale(0.7);"></div>
+    <div class="geo-shape geo-square" style="top: 10%; left: 55%; animation-delay: -2s; transform: scale(0.8);"></div>
+    <div class="geo-shape geo-diamond" style="top: 85%; left: 65%; animation-delay: -15s; transform: scale(0.6) rotate(45deg);"></div>
+    <div class="geo-shape geo-hexagon" style="top: 30%; left: 20%; animation-delay: -7s; transform: scale(0.7);"></div>
+    <div class="geo-shape geo-cross" style="top: 55%; left: 45%; animation-delay: -4s; transform: scale(1.2);"></div>
+    <div class="shooting-star" style="top: 15%; left: 5%; animation-delay: 0s; animation-duration: 6s;"></div>
+    <div class="shooting-star" style="top: 35%; left: 25%; animation-delay: 2s; animation-duration: 7s;"></div>
+    <div class="shooting-star" style="top: 55%; left: 60%; animation-delay: 4s; animation-duration: 8s;"></div>
+    <div class="shooting-star" style="top: 75%; left: 40%; animation-delay: 1s; animation-duration: 6.5s;"></div>
+    <div class="shooting-star" style="top: 25%; left: 80%; animation-delay: 3.5s; animation-duration: 7.5s;"></div>
+    <div class="shooting-star" style="top: 85%; left: 15%; animation-delay: 5s; animation-duration: 8s;"></div>
+    <div class="shooting-star" style="top: 45%; left: 90%; animation-delay: 2.5s; animation-duration: 6s;"></div>
+    <div class="shooting-star" style="top: 65%; left: 75%; animation-delay: 4.5s; animation-duration: 7s;"></div>
+    <div class="noise"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="menu-close-x absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white hover:text-indigo-400 transition-all duration-500 z-60 group" onclick="closeMobileMenu()" aria-label="Close menu">
+            <svg class="w-6 h-6 transition-transform duration-500 group-hover:rotate-90 group-hover:scale-110" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" class="transition-all duration-300"></line>
+                <line x1="6" y1="6" x2="18" y2="18" class="transition-all duration-300"></line>
+            </svg>
+        </button>
+        <div class="menu-particles" id="menuParticles"></div>
+        <a href="#home" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">01</span>Home</a>
+        <a href="#about" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">02</span>About</a>
+        <a href="#work" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">03</span>Work</a>
+        <a href="#skills" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">04</span>Skills</a>
+        <a href="#contact" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">05</span>Contact</a>
+        <div class="mobile-menu-footer">
+            <p>Let's build something amazing together</p>
+            <div class="mobile-menu-socials">
+                <a href="https://github.com/jaypindoria" target="_blank"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="https://linkedin.com/in/jaypindoria" target="_blank"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="https://www.instagram.com/jay.pindoria_/" target="_blank"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="tel:+918866081530"><i data-lucide="phone" class="w-5 h-5"></i></a>
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-bar" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-display text-xl font-bold anim-slide-down d1">JP<span class="text-indigo-500">.</span></a>
+            <div class="desktop-nav hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d2">About</a>
+                <a href="#work" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d3">Work</a>
+                <a href="#skills" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d4">Skills</a>
+                <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors anim-slide-down d5">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="hidden md:inline-flex text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors anim-slide-down d6">Let's Talk</a>
+                <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden" id="home">
+        <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent line-divider" id="heroLine1"></div>
+        <div class="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent line-divider" id="heroLine2"></div>
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl">
+                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-6 anim-slide-left d1"><span class="inline-block w-8 h-px bg-indigo-400 mr-3 align-middle"></span>Web Developer</p>
+                <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8">
+                    <div><span class="block anim-slide-up d2">Jay</span></div>
+                    <div><span class="block gradient-text anim-slide-up d3">Pindoria</span></div>
+                </h1>
+                <p class="text-gray-400 text-lg max-w-lg mb-10 leading-relaxed anim-slide-right d4">Building modern websites for businesses. Based in India, working worldwide.</p>
+                <div class="flex flex-wrap gap-4 anim-scale-pop d5">
+                    <a href="#work" class="btn-primary">View My Work<i data-lucide="arrow-down" class="w-4 h-4"></i></a>
+                    <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+                </div>
+                <div class="mt-12 flex gap-6 anim-bounce d6">
+                    <a href="https://github.com/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                    <a href="https://linkedin.com/in/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 relative" id="about">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-left"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>About Me</p>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-8 leading-tight reveal-rotate">Building digital<br><span class="gradient-text">experiences</span></h2>
+                    <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                        <p class="reveal-left">I'm Jay Pindoria, a web developer from India. I started building websites in 2024 and have been creating modern, responsive web solutions for businesses since then.</p>
+                        <p class="reveal-right">I focus on clean code, fast performance, and designs that convert visitors into customers.</p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-3 gap-8">
+                        <div class="reveal-scale"><p class="text-4xl font-display font-bold text-white">2</p><p class="text-sm text-gray-500 mt-1">Years Exp</p></div>
+                        <div class="reveal-scale"><p class="text-4xl font-display font-bold text-white">4</p><p class="text-sm text-gray-500 mt-1">Projects</p></div>
+                        <div class="reveal-scale"><p class="text-4xl font-display font-bold text-white">100%</p><p class="text-sm text-gray-500 mt-1">Satisfaction</p></div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 border-t border-white/5" id="work">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-left"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Selected Work</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold reveal-left" style="transition-delay: 0.1s">Live Websites</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="project-card">
+                    <div class="flex items-center gap-4 mb-4 reveal-up"><span class="tag">E-Commerce</span><span class="tag flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
+                    <h3 class="font-display text-2xl font-bold mb-2 reveal-left">Spark Trading</h3>
+                    <p class="text-gray-400 mb-4 text-sm reveal-right">Trading & e-commerce platform for a Kenyan business with product catalogs and responsive design.</p>
+                    <div class="site-frame mb-4 reveal-scale">
+                        <div class="site-frame-header"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-4 text-xs text-gray-500 font-mono">sparktrading.co.ke</span></div>
+                        <iframe src="https://sparktrading.co.ke" title="Spark Trading" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4 reveal-up"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Responsive</span></div>
+                    <a href="https://sparktrading.co.ke" target="_blank" class="btn-outline reveal-scale text-sm py-2 px-4">Visit Website<i data-lucide="external-link" class="w-4 h-4"></i></a>
+                </div>
+                <div class="project-card">
+                    <div class="flex items-center gap-4 mb-4 reveal-up"><span class="tag" style="background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); color: #34d399;">Services</span><span class="tag flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
+                    <h3 class="font-display text-2xl font-bold mb-2 reveal-left">Juhu Enterprise</h3>
+                    <p class="text-gray-400 mb-4 text-sm reveal-right">Professional service website for painting, waterproofing, and granite application with lead generation.</p>
+                    <div class="site-frame mb-4 reveal-scale">
+                        <div class="site-frame-header"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-4 text-xs text-gray-500 font-mono">juhuenterprise.com</span></div>
+                        <iframe src="https://juhuenterprise.com" title="Juhu Enterprise" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4 reveal-up"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">UI/UX</span></div>
+                    <a href="https://juhuenterprise.com" target="_blank" class="btn-outline reveal-scale text-sm py-2 px-4">Visit Website<i data-lucide="external-link" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 border-t border-white/5" id="skills">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-up"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Capabilities</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold reveal-scale">Tech Stack</h2>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.05s"><i data-lucide="code-2" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">HTML5</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.1s"><i data-lucide="palette" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">CSS3</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.15s"><i data-lucide="file-json" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">JavaScript</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.2s"><i data-lucide="atom" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">React</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.25s"><i data-lucide="server" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">Node.js</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.3s"><i data-lucide="database" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">PHP</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.35s"><i data-lucide="table" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">MySQL</span></div>
+                <div class="glass-card rounded-2xl p-6 w-32 h-32 flex flex-col items-center justify-center gap-2 reveal-scale" style="transition-delay: 0.4s"><i data-lucide="wind" class="w-8 h-8 text-indigo-400"></i><span class="text-xs text-gray-400 font-mono">Tailwind</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 border-t border-white/5" id="contact">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-up"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Get In Touch</p>
+            <h2 class="font-display text-5xl md:text-6xl font-bold mb-8 reveal-rotate">Let's work<br><span class="gradient-text">together</span></h2>
+            <p class="text-gray-400 text-lg mb-12 max-w-lg mx-auto reveal-up">Have a project in mind? I'm available for new work. Reach out anytime.</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-16 reveal-scale">
+                <a href="mailto:jaypindoria05@gmail.com" class="btn-primary"><i data-lucide="mail" class="w-4 h-4"></i>jaypindoria05@gmail.com</a>
+                <a href="tel:+918866081530" class="btn-outline"><i data-lucide="phone" class="w-4 h-4"></i>+91 8866081530</a>
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Me</a>
+            </div>
+            <div class="glass-card rounded-2xl p-8 md:p-12 text-left reveal-scale">
+                <form onsubmit="event.preventDefault(); showNotif('Message sent! I will reply soon.');">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="reveal-up" style="transition-delay: 0.1s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Name</label><input type="text" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Your name"></div>
+                        <div class="reveal-up" style="transition-delay: 0.2s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Email</label><input type="email" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="your@email.com"></div>
+                    </div>
+                    <div class="mb-6 reveal-up" style="transition-delay: 0.3s"><label class="block text-xs text-gray-500 font-mono mb-2 uppercase">Message</label><textarea rows="4" class="w-full bg-transparent border-b border-gray-800 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors resize-none" placeholder="Tell me about your project..."></textarea></div>
+                    <button type="submit" class="btn-primary reveal-scale" style="transition-delay: 0.4s">Send Message<i data-lucide="send" class="w-4 h-4"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <a href="#home" class="font-display text-lg font-bold">JP<span class="text-indigo-500">.</span></a>
+                <span class="text-gray-600 text-sm" id="footerYear"></span>
+            </div>
+            <div class="flex gap-6">
+                <a href="#about" class="text-gray-500 hover:text-white transition-colors text-sm">About</a>
+                <a href="#work" class="text-gray-500 hover:text-white transition-colors text-sm">Work</a>
+                <a href="#skills" class="text-gray-500 hover:text-white transition-colors text-sm">Skills</a>
+                <a href="#contact" class="text-gray-500 hover:text-white transition-colors text-sm">Contact</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="https://github.com/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
+                <a href="https://linkedin.com/in/jaypindoria" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                <a href="https://www.instagram.com/jay.pindoria_/" target="_blank" class="text-gray-500 hover:text-white transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="tel:+918866081530" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="whatsapp-float"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+    <div id="notif" class="fixed bottom-24 right-6 glass-card px-6 py-4 rounded-xl border border-green-500/20 transform translate-y-20 opacity-0 transition-all duration-500 z-50 flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i><span class="text-sm text-white" id="notifText"></span></div>
+
+    <script>
+        lucide.createIcons();
+        // Custom cursor removed
+        window.addEventListener('scroll', () => { const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight); document.getElementById('scrollProgress').style.transform = `scaleX(${scrolled})`; });
+        // Navbar is always visible - no scroll toggle needed
+        setTimeout(() => { document.getElementById('heroLine1').classList.add('active'); document.getElementById('heroLine2').classList.add('active'); }, 800);
+        const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('reveal-visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-scale, .reveal-rotate').forEach(el => { revealObserver.observe(el); });
+        const lineObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); lineObserver.unobserve(entry.target); } }); }, { threshold: 0.5 });
+        document.querySelectorAll('.line-divider').forEach(el => lineObserver.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', (e) => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); }); });
+        function showNotif(text) { const n = document.getElementById('notif'); document.getElementById('notifText').textContent = text; n.classList.remove('translate-y-20', 'opacity-0'); setTimeout(() => n.classList.add('translate-y-20', 'opacity-0'), 3000); }
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuParticles = document.getElementById('menuParticles');
+        function generateParticles() { menuParticles.innerHTML = ''; for (let i = 0; i < 20; i++) { const particle = document.createElement('div'); particle.className = 'menu-particle'; particle.style.left = Math.random() * 100 + '%'; particle.style.top = Math.random() * 100 + '%'; particle.style.animationDelay = Math.random() * 8 + 's'; particle.style.animationDuration = (6 + Math.random() * 6) + 's'; menuParticles.appendChild(particle); } }
+        generateParticles();
+        function toggleMobileMenu() { const isOpen = mobileMenu.classList.contains('active'); if (isOpen) { closeMobileMenu(); } else { openMobileMenu(); } }
+        function openMobileMenu() { hamburger.classList.add('active'); mobileMenu.classList.add('active'); document.body.classList.add('menu-open'); generateParticles(); }
+        function closeMobileMenu() { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.classList.remove('menu-open'); }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) { closeMobileMenu(); } });
+        document.getElementById('footerYear').innerHTML = `&copy; ${new Date().getFullYear()} Jay Pindoria`;
+    </script>
+</body>
+</html>
