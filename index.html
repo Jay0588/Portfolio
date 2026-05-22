@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom, 0); }
         .font-display { font-family: 'Space Grotesk', sans-serif; }
         /* Custom cursor removed - using default cursor */
 
@@ -101,10 +101,10 @@
         /* Dark/Light Mode Toggle */
         .theme-toggle {
             position: fixed;
-            bottom: 24px;
-            left: 24px;
-            width: 48px;
-            height: 48px;
+            bottom: 80px;
+            left: 16px;
+            width: 40px;
+            height: 40px;
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
@@ -276,26 +276,9 @@
             font-size: 2rem;
             font-weight: 700;
             color: #fff;
-            overflow: hidden;
-        }
-        .preloader-text span {
-            display: inline-block;
-            animation: preloaderReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation: preloaderFadeIn 0.5s ease forwards;
             opacity: 0;
-            transform: translateY(100%);
         }
-        .preloader-text span:nth-child(1) { animation-delay: 0.15s; }
-        .preloader-text span:nth-child(2) { animation-delay: 0.3s; }
-        .preloader-text span:nth-child(3) { animation-delay: 0.45s; }
-        .preloader-text span:nth-child(4) { animation-delay: 0.6s; }
-        .preloader-text span:nth-child(5) { animation-delay: 0.75s; }
-        .preloader-text span:nth-child(6) { animation-delay: 0.9s; }
-        .preloader-text span:nth-child(7) { animation-delay: 1.05s; }
-        .preloader-text span:nth-child(8) { animation-delay: 1.2s; }
-        .preloader-text span:nth-child(9) { animation-delay: 1.35s; }
-        .preloader-text span:nth-child(10) { animation-delay: 1.5s; }
-        .preloader-text span:nth-child(11) { animation-delay: 1.65s; }
-        .preloader-text span:nth-child(12) { animation-delay: 1.8s; }
         .preloader-bar {
             position: absolute;
             bottom: 0;
@@ -305,8 +288,8 @@
             animation: preloaderProgress 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             transform-origin: left;
         }
-        @keyframes preloaderReveal {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes preloaderFadeIn {
+            to { opacity: 1; }
         }
         @keyframes preloaderProgress {
             from { transform: scaleX(0); }
@@ -342,12 +325,13 @@
         .btn-outline:hover { border-color: #6366f1; color: #6366f1; }
         .btn-whatsapp { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; font-weight: 600; border-radius: 8px; transition: all 0.3s ease; }
         .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
-        .site-frame { background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+        .site-frame { background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; position: relative; }
+        
         .site-frame-header { background: rgba(255,255,255,0.03); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .site-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .site-frame iframe { width: 100%; aspect-ratio: 4/3; height: auto; border: none; }
+        
         .tag { display: inline-flex; padding: 6px 14px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15); border-radius: 100px; font-size: 0.75rem; color: #818cf8; }
-        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: linear-gradient(135deg, #25D366, #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 100; box-shadow: 0 8px 32px rgba(37,211,102,0.3); transition: all 0.3s ease; }
+        .whatsapp-float { position: fixed; bottom: 100px; right: 20px; width: 48px; height: 48px; background: linear-gradient(135deg, #25D366, #128C7E); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 100; box-shadow: 0 8px 32px rgba(37,211,102,0.3); transition: all 0.3s ease; }
         .whatsapp-float:hover { transform: scale(1.1); }
         .nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,10,10,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); transform: translateY(0); }
         .hamburger { display: none; width: 32px; height: 32px; position: relative; cursor: pointer; z-index: 60; background: none; border: none; padding: 0; }
@@ -377,45 +361,30 @@
         .mobile-menu-socials { display: flex; justify-content: center; gap: 24px; }
         .mobile-menu-socials a { color: #6b7280; transition: color 0.3s ease; }
         .mobile-menu-socials a:hover { color: #fff; }
-        .menu-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
-        .menu-particle { position: absolute; width: 2px; height: 2px; background: rgba(99,102,241,0.3); border-radius: 50%; animation: floatParticle 8s infinite ease-in-out; }
-        @keyframes floatParticle { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 50% { transform: translateY(-100px) translateX(50px); } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100px) skewX(-5deg); } to { opacity: 1; transform: translateX(0) skewX(0); } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(100px) skewX(5deg); } to { opacity: 1; transform: translateX(0) skewX(0); } }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInDown { from { opacity: 0; transform: translateY(-80px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scalePop { from { opacity: 0; transform: scale(0.3); } 70% { transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
-        @keyframes rotateIn { from { opacity: 0; transform: rotate(-15deg) translateY(50px); } to { opacity: 1; transform: rotate(0) translateY(0); } }
-        @keyframes flipInX { from { opacity: 0; transform: perspective(400px) rotateX(90deg); } 40% { transform: perspective(400px) rotateX(-10deg); } to { opacity: 1; transform: perspective(400px) rotateX(0); } }
-        @keyframes bounceIn { from { opacity: 0; transform: scale(0.1); } 50% { transform: scale(1.1); } 70% { transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        @keyframes charReveal { from { opacity: 0; transform: translateY(100%) rotate(10deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
-        @keyframes clipReveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-        .anim-slide-left { opacity: 0; animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-slide-right { opacity: 0; animation: slideInRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-slide-up { opacity: 0; animation: slideInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-slide-down { opacity: 0; animation: slideInDown 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-scale-pop { opacity: 0; animation: scalePop 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-rotate { opacity: 0; animation: rotateIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-flip { opacity: 0; animation: flipInX 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-bounce { opacity: 0; animation: bounceIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .anim-clip { opacity: 0; animation: clipReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; } .d5 { animation-delay: 0.5s; } .d6 { animation-delay: 0.6s; } .d7 { animation-delay: 0.7s; } .d8 { animation-delay: 0.8s; }
+
+        
         .reveal-left { opacity: 0; transform: translateX(-80px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal-right { opacity: 0; transform: translateX(80px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal-up { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal-scale { opacity: 0; transform: scale(0.8); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal-rotate { opacity: 0; transform: rotate(-5deg) translateY(40px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal-visible { opacity: 1; transform: translateX(0) translateY(0) scale(1) rotate(0); }
-        .line-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(99,102,241,0.5), transparent); transform: scaleX(0); transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
-        .line-divider.active { transform: scaleX(1); }
+
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0a0a0a; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
         @media (max-width: 768px) {
             .preloader-text { font-size: 1.5rem; }
-            .theme-toggle { bottom: 80px; left: 16px; width: 40px; height: 40px; }
-            .whatsapp-float { bottom: 80px; right: 16px; width: 48px; height: 48px; }
-            .site-frame iframe { aspect-ratio: 4/3; height: auto; }
+            .theme-toggle { bottom: 80px; left: 12px; width: 40px; height: 40px; }
+            .whatsapp-float { bottom: 80px; right: 12px; width: 48px; height: 48px; }
+            .site-frame iframe { height: 250px; }
             .mobile-menu-item { font-size: 2rem; }
-            .mobile-menu-socials { gap: 16px; } .site-frame iframe { aspect-ratio: 4/3; height: auto; } .hamburger { display: block; } .desktop-nav { display: none; } .mobile-menu-item { font-size: 2rem; } }
+            .mobile-menu-socials { gap: 16px; }
+            .btn-primary, .btn-outline, .btn-whatsapp { font-size: 0.875rem; padding: 10px 20px; }
+            .site-frame { margin-bottom: 16px; }
+            .tag { font-size: 0.65rem; padding: 4px 10px; }
+            h3.font-display { font-size: 1.25rem; }
+            .flex-wrap.gap-4 { gap: 8px; }
+            .grid.md\:grid-cols-2 { grid-template-columns: 1fr; }
+            .grid.xl\:grid-cols-3 { grid-template-columns: 1fr; } .site-frame iframe { height: 250px; } .hamburger { display: block; } .desktop-nav { display: none; } .mobile-menu-item { font-size: 2rem; } }
         @media (min-width: 769px) { .mobile-menu { display: none !important; } }
         body.menu-open { overflow: hidden; }
 
@@ -442,13 +411,7 @@
             animation-delay: -7s;
             animation-duration: 25s;
         }
-        .bg-orb-3 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #818cf8, transparent 70%);
-            top: 50%; left: 50%;
-            animation-delay: -14s;
-            animation-duration: 18s;
-        }
+
         @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(100px, -80px) scale(1.1); }
@@ -456,129 +419,11 @@
             75% { transform: translate(80px, 60px) scale(1.05); }
         }
 
-        /* Floating Dust Particles */
-        .dust-particle {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: rgba(99,102,241,0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: dustFloat 15s infinite ease-in-out;
-            box-shadow: 0 0 6px 1px rgba(99,102,241,0.3);
-        }
-        .dust-particle:nth-child(odd) { 
-            background: rgba(192,132,252,0.5); 
-            box-shadow: 0 0 6px 1px rgba(192,132,252,0.3);
-        }
-        @keyframes dustFloat {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            50% { transform: translateY(-120px) translateX(40px); }
-        }
 
-        /* Geometric Shapes - More Visible */
-        .geo-shape {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.15;
-            border: 1.5px solid rgba(99,102,241,0.25);
-        }
-        .geo-triangle {
-            width: 0; height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-bottom: 40px solid rgba(99,102,241,0.12);
-            animation: geoSpin 25s infinite linear;
-        }
-        .geo-square {
-            width: 35px; height: 35px;
-            border: 1.5px solid rgba(192,132,252,0.2);
-            animation: geoSpin 20s infinite linear reverse;
-        }
-        .geo-diamond {
-            width: 30px; height: 30px;
-            border: 1.5px solid rgba(129,140,248,0.2);
-            transform: rotate(45deg);
-            animation: geoPulse 8s infinite ease-in-out;
-        }
-        .geo-hexagon {
-            width: 40px; height: 23px;
-            background: rgba(99,102,241,0.08);
-            position: relative;
-            animation: geoFloat 18s infinite ease-in-out;
-        }
-        .geo-hexagon:before, .geo-hexagon:after {
-            content: "";
-            position: absolute;
-            width: 0; border-left: 20px solid transparent; border-right: 20px solid transparent;
-        }
-        .geo-hexagon:before {
-            bottom: 100%; border-bottom: 11.5px solid rgba(99,102,241,0.08);
-        }
-        .geo-hexagon:after {
-            top: 100%; border-top: 11.5px solid rgba(99,102,241,0.08);
-        }
-        .geo-cross {
-            width: 20px; height: 20px;
-            position: relative;
-            animation: geoSpin 15s infinite linear;
-        }
-        .geo-cross:before, .geo-cross:after {
-            content: '';
-            position: absolute;
-            background: rgba(192,132,252,0.3);
-        }
-        .geo-cross:before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
-        .geo-cross:after { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
-        @keyframes geoSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes geoPulse {
-            0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.15; }
-            50% { transform: rotate(45deg) scale(1.3); opacity: 0.3; }
-        }
-        @keyframes geoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-        }
 
-        /* Animated Gradient Ring */
-        .gradient-ring {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(99,102,241,0.08);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: ringPulse 10s infinite ease-in-out;
-        }
-        .gradient-ring-1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .gradient-ring-2 { bottom: 30%; right: 15%; animation-delay: -5s; animation-duration: 12s; }
-        @keyframes ringPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-            50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
-        }
 
-        /* Wave Lines */
-        .wave-line {
-            position: fixed;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.1), transparent);
-            pointer-events: none;
-            z-index: 0;
-            animation: waveMove 12s infinite ease-in-out;
-        }
-        @keyframes waveMove {
-            0%, 100% { transform: translateX(-10%); opacity: 0.2; }
-            50% { transform: translateX(10%); opacity: 0.5; }
-        }
+
+
 
         /* Animated Grid Lines */
         .bg-grid {
@@ -651,54 +496,16 @@
 </head>
 <body class="preloading">
     <div class="preloader" id="preloader">
-        <div class="preloader-text">
-            <span>J</span><span>a</span><span>y</span><span>&nbsp;</span><span>P</span><span>i</span><span>n</span><span>d</span><span>o</span><span>r</span><span>i</span><span>a</span>
-        </div>
+        <div class="preloader-text">Jay Pindoria</div>
         <div class="preloader-bar" style="width: 100%;"></div>
     </div>
     <div class="bg-orb bg-orb-1"></div>
     <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
     <div class="bg-grid"></div>
-    <div class="gradient-ring gradient-ring-1"></div>
-    <div class="gradient-ring gradient-ring-2"></div>
-    <div class="wave-line" style="top: 25%;"></div>
-    <div class="wave-line" style="top: 50%; animation-delay: -4s;"></div>
-    <div class="wave-line" style="top: 75%; animation-delay: -8s;"></div>
-    <div class="dust-particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-    <div class="dust-particle" style="top: 30%; left: 70%; animation-delay: 2s;"></div>
-    <div class="dust-particle" style="top: 50%; left: 40%; animation-delay: 4s;"></div>
-    <div class="dust-particle" style="top: 70%; left: 80%; animation-delay: 1s;"></div>
-    <div class="dust-particle" style="top: 85%; left: 15%; animation-delay: 3s;"></div>
-    <div class="dust-particle" style="top: 15%; left: 85%; animation-delay: 5s;"></div>
-    <div class="dust-particle" style="top: 60%; left: 25%; animation-delay: 6s;"></div>
-    <div class="dust-particle" style="top: 40%; left: 55%; animation-delay: 7s;"></div>
-    <div class="dust-particle" style="top: 90%; left: 45%; animation-delay: 8s;"></div>
-    <div class="dust-particle" style="top: 20%; left: 60%; animation-delay: 9s;"></div>
-    <div class="dust-particle" style="top: 5%; left: 50%; animation-delay: 1.5s;"></div>
-    <div class="dust-particle" style="top: 75%; left: 5%; animation-delay: 3.5s;"></div>
-    <div class="dust-particle" style="top: 35%; left: 90%; animation-delay: 5.5s;"></div>
-    <div class="dust-particle" style="top: 95%; left: 75%; animation-delay: 7.5s;"></div>
-    <div class="dust-particle" style="top: 45%; left: 10%; animation-delay: 9.5s;"></div>
-    <!-- Geometric Shapes -->
-    <div class="geo-shape geo-triangle" style="top: 15%; left: 8%; animation-delay: 0s;"></div>
-    <div class="geo-shape geo-square" style="top: 70%; left: 85%; animation-delay: -5s;"></div>
-    <div class="geo-shape geo-diamond" style="top: 40%; left: 92%; animation-delay: -10s;"></div>
-    <div class="geo-shape geo-hexagon" style="top: 80%; left: 12%; animation-delay: -3s;"></div>
-    <div class="geo-shape geo-cross" style="top: 25%; left: 75%; animation-delay: -8s;"></div>
-    <div class="geo-shape geo-triangle" style="top: 60%; left: 5%; animation-delay: -12s; transform: scale(0.7);"></div>
-    <div class="geo-shape geo-square" style="top: 10%; left: 55%; animation-delay: -2s; transform: scale(0.8);"></div>
-    <div class="geo-shape geo-diamond" style="top: 85%; left: 65%; animation-delay: -15s; transform: scale(0.6) rotate(45deg);"></div>
-    <div class="geo-shape geo-hexagon" style="top: 30%; left: 20%; animation-delay: -7s; transform: scale(0.7);"></div>
-    <div class="geo-shape geo-cross" style="top: 55%; left: 45%; animation-delay: -4s; transform: scale(1.2);"></div>
-    <div class="shooting-star" style="top: 15%; left: 5%; animation-delay: 0s; animation-duration: 6s;"></div>
-    <div class="shooting-star" style="top: 35%; left: 25%; animation-delay: 2s; animation-duration: 7s;"></div>
-    <div class="shooting-star" style="top: 55%; left: 60%; animation-delay: 4s; animation-duration: 8s;"></div>
-    <div class="shooting-star" style="top: 75%; left: 40%; animation-delay: 1s; animation-duration: 6.5s;"></div>
-    <div class="shooting-star" style="top: 25%; left: 80%; animation-delay: 3.5s; animation-duration: 7.5s;"></div>
-    <div class="shooting-star" style="top: 85%; left: 15%; animation-delay: 5s; animation-duration: 8s;"></div>
-    <div class="shooting-star" style="top: 45%; left: 90%; animation-delay: 2.5s; animation-duration: 6s;"></div>
-    <div class="shooting-star" style="top: 65%; left: 75%; animation-delay: 4.5s; animation-duration: 7s;"></div>
+    <div class="shooting-star" style="top: 15%; left: 5%; animation-delay: 0s; animation-duration: 8s;"></div>
+    <div class="shooting-star" style="top: 55%; left: 60%; animation-delay: 4s; animation-duration: 9s;"></div>
+    <div class="shooting-star" style="top: 25%; left: 80%; animation-delay: 2s; animation-duration: 10s;"></div>
+    <div class="shooting-star" style="top: 85%; left: 15%; animation-delay: 6s; animation-duration: 8s;"></div>
     <div class="noise"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -709,7 +516,7 @@
                 <line x1="6" y1="6" x2="18" y2="18" class="transition-all duration-300"></line>
             </svg>
         </button>
-        <div class="menu-particles" id="menuParticles"></div>
+
         <a href="#home" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">01</span>Home</a>
         <a href="#about" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">02</span>About</a>
         <a href="#work" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">03</span>Work</a>
@@ -748,8 +555,7 @@
     </nav>
 
     <section class="min-h-screen flex items-center pt-20 md:pt-24 relative overflow-hidden site-reveal" id="home">
-        <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent line-divider" id="heroLine1"></div>
-        <div class="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent line-divider" id="heroLine2"></div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
             <div class="max-w-3xl">
                 <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6 site-reveal site-reveal-delay-1"><span class="inline-block w-6 sm:w-8 h-px bg-indigo-400 mr-2 sm:mr-3 align-middle"></span><span class="typewriter">Web Developer</span></p>
@@ -771,7 +577,7 @@
     </section>
 
     <section class="py-32 relative site-reveal site-reveal-delay-2" id="about">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-left"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>About Me</p>
@@ -793,34 +599,49 @@
         </div>
     </section>
 
-    <section class="py-32 border-t border-white/5 site-reveal site-reveal-delay-2" id="work">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <p class="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 reveal-left"><span class="inline-block w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Selected Work</p>
-                <h2 class="font-display text-4xl md:text-5xl font-bold reveal-left" style="transition-delay: 0.1s">Live Websites</h2>
+    <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-2" id="work">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="mb-10 sm:mb-16">
+                <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-left"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Selected Work</p>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold reveal-left" style="transition-delay: 0.1s">Live Websites</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div class="project-card">
-                    <div class="flex items-center gap-4 mb-4 reveal-up"><span class="tag">E-Commerce</span><span class="tag flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
-                    <h3 class="font-display text-2xl font-bold mb-2 reveal-left">Spark Trading</h3>
-                    <p class="text-gray-400 mb-4 text-sm reveal-right">Trading & e-commerce platform for a Kenyan business with product catalogs and responsive design.</p>
-                    <div class="site-frame mb-4 reveal-scale">
-                        <div class="site-frame-header"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-4 text-xs text-gray-500 font-mono">sparktrading.co.ke</span></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Project 1 -->
+                <div class="project-card" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs">E-Commerce</span><span class="tag text-xs flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold mb-2 reveal-left">Spark Trading</h3>
+                    <p class="text-gray-400 mb-3 sm:mb-4 text-sm reveal-right">Trading & e-commerce platform for a Kenyan business with product catalogs and responsive design.</p>
+                    <div class="site-frame mb-3 sm:mb-4 reveal-scale" style="flex: 1 1 auto; display: flex; flex-direction: column;">
+                        <div class="site-frame-header py-2 sm:py-3 px-3 sm:px-4"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-3 sm:ml-4 text-xs text-gray-500 font-mono">sparktrading.co.ke</span></div>
                         <iframe src="https://sparktrading.co.ke" title="Spark Trading" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4 reveal-up"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Responsive</span></div>
-                    <a href="https://sparktrading.co.ke" target="_blank" class="btn-outline reveal-scale text-sm py-2 px-4">Visit Website<i data-lucide="external-link" class="w-4 h-4"></i></a>
+                    <div class="flex flex-wrap gap-2 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs">HTML5</span><span class="tag text-xs">CSS3</span><span class="tag text-xs">JavaScript</span><span class="tag text-xs">Responsive</span></div>
+                    <a href="https://sparktrading.co.ke" target="_blank" class="btn-outline reveal-scale text-xs sm:text-sm py-2 px-3 sm:px-4" style="margin-top: auto;">Visit Website<i data-lucide="external-link" class="w-3 h-3 sm:w-4 sm:h-4"></i></a>
                 </div>
-                <div class="project-card">
-                    <div class="flex items-center gap-4 mb-4 reveal-up"><span class="tag" style="background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); color: #34d399;">Services</span><span class="tag flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
-                    <h3 class="font-display text-2xl font-bold mb-2 reveal-left">Juhu Enterprise</h3>
-                    <p class="text-gray-400 mb-4 text-sm reveal-right">Professional service website for painting, waterproofing, and granite application with lead generation.</p>
-                    <div class="site-frame mb-4 reveal-scale">
-                        <div class="site-frame-header"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-4 text-xs text-gray-500 font-mono">juhuenterprise.com</span></div>
+                <!-- Project 2 -->
+                <div class="project-card" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs" style="background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); color: #34d399;">Services</span><span class="tag text-xs flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold mb-2 reveal-left">Juhu Enterprise</h3>
+                    <p class="text-gray-400 mb-3 sm:mb-4 text-sm reveal-right">Professional service website for painting, waterproofing, and granite application with lead generation.</p>
+                    <div class="site-frame mb-3 sm:mb-4 reveal-scale" style="flex: 1 1 auto; display: flex; flex-direction: column;">
+                        <div class="site-frame-header py-2 sm:py-3 px-3 sm:px-4"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-3 sm:ml-4 text-xs text-gray-500 font-mono">juhuenterprise.com</span></div>
                         <iframe src="https://juhuenterprise.com" title="Juhu Enterprise" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4 reveal-up"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">UI/UX</span></div>
-                    <a href="https://juhuenterprise.com" target="_blank" class="btn-outline reveal-scale text-sm py-2 px-4">Visit Website<i data-lucide="external-link" class="w-4 h-4"></i></a>
+                    <div class="flex flex-wrap gap-2 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs">HTML5</span><span class="tag text-xs">CSS3</span><span class="tag text-xs">JavaScript</span><span class="tag text-xs">UI/UX</span></div>
+                    <a href="https://juhuenterprise.com" target="_blank" class="btn-outline reveal-scale text-xs sm:text-sm py-2 px-3 sm:px-4" style="margin-top: auto;">Visit Website<i data-lucide="external-link" class="w-3 h-3 sm:w-4 sm:h-4"></i></a>
+                </div>
+                <!-- Project 3 - Coming Soon -->
+                <div class="project-card" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs" style="background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); color: #34d399;">Enterprise</span><span class="tag text-xs flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>Live</span></div>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold mb-2 reveal-left">Genkin Enterprise</h3>
+                    <p class="text-gray-400 mb-3 sm:mb-4 text-sm reveal-right">Modern enterprise website currently in development. Features advanced UI components and responsive design patterns.</p>
+                    <div class="site-frame mb-3 sm:mb-4 reveal-scale" style="flex: 1 1 auto; display: flex; flex-direction: column;">
+                        <div class="site-frame-header py-2 sm:py-3 px-3 sm:px-4"><div class="site-dot bg-red-400/80"></div><div class="site-dot bg-yellow-400/80"></div><div class="site-dot bg-green-400/80"></div><span class="ml-3 sm:ml-4 text-xs text-gray-500 font-mono">jay0588.github.io/Genkin-Enterprise</span></div>
+                        <iframe src="https://jay0588.github.io/Genkin-Enterprise/" title="Genkin Enterprise" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+                        
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3 sm:mb-4 reveal-up"><span class="tag text-xs">React</span><span class="tag text-xs">Tailwind</span><span class="tag text-xs">Node.js</span><span class="tag text-xs">Modern UI</span></div>
+                    <a href="https://jay0588.github.io/Genkin-Enterprise/" target="_blank" class="btn-outline reveal-scale text-xs sm:text-sm py-2 px-3 sm:px-4" style="margin-top: auto;">Visit Website<i data-lucide="external-link" class="w-3 h-3 sm:w-4 sm:h-4"></i></a>
                 </div>
             </div>
         </div>
@@ -850,10 +671,10 @@
             <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-up"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Get In Touch</p>
             <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 reveal-rotate">Let's work<br><span class="gradient-text">together</span></h2>
             <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto reveal-up">Have a project in mind? I'm available for new work. Reach out anytime.</p>
-            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-16 reveal-scale">
-                <a href="mailto:jaypindoria05@gmail.com" class="btn-primary text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><i data-lucide="mail" class="w-4 h-4"></i>jaypindoria05@gmail.com</a>
-                <a href="tel:+918866081530" class="btn-outline text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><i data-lucide="phone" class="w-4 h-4"></i>+91 8866081530</a>
-                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Me</a>
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-16 reveal-scale">
+                <a href="mailto:jaypindoria05@gmail.com" class="btn-primary text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6 justify-center"><i data-lucide="mail" class="w-4 h-4"></i>jaypindoria05@gmail.com</a>
+                <a href="tel:+918866081530" class="btn-outline text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6 justify-center"><i data-lucide="phone" class="w-4 h-4"></i>+91 8866081530</a>
+                <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="btn-whatsapp text-sm sm:text-base py-3 px-4 sm:py-3.5 sm:px-6 justify-center"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Me</a>
             </div>
             <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 text-left reveal-scale">
                 <form onsubmit="event.preventDefault(); showNotif('Message sent! I will reply soon.');">
@@ -905,7 +726,7 @@
     </button>
     <a href="https://wa.me/918866081530?text=Hi%20Jay" target="_blank" class="whatsapp-float"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 
-    <div id="notif" class="fixed bottom-24 right-6 glass-card px-6 py-4 rounded-xl border border-green-500/20 transform translate-y-20 opacity-0 transition-all duration-500 z-50 flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i><span class="text-sm text-white" id="notifText"></span></div>
+    <div id="notif" class="fixed bottom-28 right-4 sm:bottom-24 sm:right-6 glass-card px-4 sm:px-6 py-3 sm:py-4 rounded-xl border border-green-500/20 transform translate-y-20 opacity-0 transition-all duration-500 z-50 flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i><span class="text-sm text-white" id="notifText"></span></div>
 
     <script>
         lucide.createIcons();
@@ -922,10 +743,8 @@
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuParticles = document.getElementById('menuParticles');
-        function generateParticles() { menuParticles.innerHTML = ''; for (let i = 0; i < 20; i++) { const particle = document.createElement('div'); particle.className = 'menu-particle'; particle.style.left = Math.random() * 100 + '%'; particle.style.top = Math.random() * 100 + '%'; particle.style.animationDelay = Math.random() * 8 + 's'; particle.style.animationDuration = (6 + Math.random() * 6) + 's'; menuParticles.appendChild(particle); } }
-        generateParticles();
         function toggleMobileMenu() { const isOpen = mobileMenu.classList.contains('active'); if (isOpen) { closeMobileMenu(); } else { openMobileMenu(); } }
-        function openMobileMenu() { hamburger.classList.add('active'); mobileMenu.classList.add('active'); document.body.classList.add('menu-open'); generateParticles(); }
+        function openMobileMenu() { hamburger.classList.add('active'); mobileMenu.classList.add('active'); document.body.classList.add('menu-open'); }
         function closeMobileMenu() { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.classList.remove('menu-open'); }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) { closeMobileMenu(); } });
         document.getElementById('footerYear').innerHTML = `&copy; ${new Date().getFullYear()} Jay Pindoria`;
@@ -961,26 +780,7 @@
             }
         })();
 
-        // Parallax Background on Mouse Move
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth - 0.5;
-            const mouseY = e.clientY / window.innerHeight - 0.5;
 
-            document.querySelectorAll('.geo-shape').forEach((shape, i) => {
-                const depth = (i % 3 + 1) * 8;
-                shape.style.transform = `translate(${mouseX * depth}px, ${mouseY * depth}px)`;
-            });
-
-            document.querySelectorAll('.dust-particle').forEach((p, i) => {
-                const depth = (i % 2 + 1) * 4;
-                p.style.transform = `translate(${mouseX * depth}px, ${mouseY * depth}px)`;
-            });
-
-            document.querySelectorAll('.bg-orb').forEach((orb, i) => {
-                const depth = (i + 1) * 15;
-                orb.style.transform = `translate(${mouseX * depth}px, ${mouseY * depth}px)`;
-            });
-        });
 
         // Theme Toggle
         function toggleTheme() {
