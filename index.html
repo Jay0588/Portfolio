@@ -12,10 +12,13 @@
     <meta property="og:description" content="Building modern websites for businesses. Based in India, working worldwide.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jaypindoria.com">
-    <meta property="og:image" content="https://jaypindoria.com/og-image.jpg">
+    <meta property="og:image" content="./og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jay Pindoria | Web Developer">
     <meta name="twitter:description" content="Building modern websites for businesses. Based in India, working worldwide.">
+    <meta name="twitter:image" content="./og-image.jpg">
     <link rel="canonical" href="https://jaypindoria.com">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -82,6 +85,31 @@
         .skill-card:hover::after {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
+        }
+
+                /* Skills Marquee - Pure CSS Infinite Scroll Left */
+        .skills-marquee-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+        .skills-marquee-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+            animation: marquee-left 20s linear infinite;
+            will-change: transform;
+        }
+        @keyframes marquee-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+            .skills-marquee-track {
+                animation-duration: 15s;
+            }
         }
 
         /* Staggered Skills Animation */
@@ -522,7 +550,8 @@
         <a href="#about" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">02</span>About</a>
         <a href="#work" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">03</span>Work</a>
         <a href="#skills" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">04</span>Skills</a>
-        <a href="#contact" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">05</span>Contact</a>
+        <a href="#pricing" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">05</span>Pricing</a>
+        <a href="#contact" class="mobile-menu-item" onclick="closeMobileMenu()"><span class="menu-number">06</span>Contact</a>
         <div class="mobile-menu-footer">
             <p>Let's build something amazing together</p>
             <div class="mobile-menu-socials">
@@ -542,6 +571,7 @@
                 <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
                 <a href="#work" class="text-sm text-gray-400 hover:text-white transition-colors">Work</a>
                 <a href="#skills" class="text-sm text-gray-400 hover:text-white transition-colors">Skills</a>
+                <a href="#pricing" class="text-sm text-gray-400 hover:text-white transition-colors">Pricing</a>
                 <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
             </div>
             <div class="flex items-center gap-3 sm:gap-4">
@@ -647,22 +677,111 @@
             </div>
         </div>
     </section>
+    <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-3" id="pricing">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16">
+                <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-up"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Pricing</p>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold reveal-scale">Choose Your Plan</h2>
+                <p class="text-gray-400 mt-4 max-w-lg mx-auto text-sm sm:text-base reveal-up">Transparent pricing for every stage of your business growth.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+                <!-- Basic Plan -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col reveal-scale" style="transition-delay: 0.1s">
+                    <div class="mb-6">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-2">Basic</h3>
+                        <p class="text-gray-400 text-sm">Perfect for startups & small businesses</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="font-display text-4xl sm:text-5xl font-bold">₹5,000</span>
+                        <span class="text-gray-500 text-sm"> / starting</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Single Page Website</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Mobile Responsive</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Contact Form</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Basic SEO Setup</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>1 Week Delivery</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>1 Year Domain</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-500"><i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i>Custom Animations</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-500"><i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i>CMS Integration</li>
+                    </ul>
+                    <a href="https://wa.me/918866081530?text=Hi%20Jay,%20I%20want%20the%20Basic%20Plan" target="_blank" class="btn-outline w-full justify-center text-sm">Get Started</a>
+                </div>
+                <!-- Advanced Plan -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col reveal-scale relative overflow-hidden" style="transition-delay: 0.2s; border-color: rgba(99,102,241,0.3);">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">POPULAR</div>
+                    <div class="mb-6">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-2">Advanced</h3>
+                        <p class="text-gray-400 text-sm">For growing businesses</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="font-display text-4xl sm:text-5xl font-bold gradient-text">₹10,000+</span>
+                        <span class="text-gray-500 text-sm"> / starting</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Multi-Page Website (5 pages)</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Mobile Responsive</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Contact Form + Map</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Advanced SEO</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Custom Animations</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Social Media Links</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>1 Year Domain</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-500"><i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i>CMS Integration</li>
+                    </ul>
+                    <a href="https://wa.me/918866081530?text=Hi%20Jay,%20I%20want%20the%20Advanced%20Plan" target="_blank" class="btn-primary w-full justify-center text-sm">Get Started</a>
+                </div>
+                <!-- Customized Plan -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col reveal-scale" style="transition-delay: 0.3s">
+                    <div class="mb-6">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-2">Customized</h3>
+                        <p class="text-gray-400 text-sm">Enterprise & complex projects</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="font-display text-4xl sm:text-5xl font-bold">Custom</span>
+                        <span class="text-gray-500 text-sm"> / depends on project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Unlimited Pages</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Full Custom Design</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>CMS / Dashboard</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>E-Commerce Ready</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Advanced Animations</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Priority Support</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>1 Year Domain</li>
+                        <li class="flex items-center gap-3 text-sm text-gray-300"><i data-lucide="check" class="w-4 h-4 text-green-400 flex-shrink-0"></i>Maintenance Included</li>
+                    </ul>
+                    <a href="https://wa.me/918866081530?text=Hi%20Jay,%20I%20want%20a%20Custom%20Quote" target="_blank" class="btn-outline w-full justify-center text-sm">Contact for Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-3" id="skills">
+
+        <section class="py-20 sm:py-32 border-t border-white/5 site-reveal site-reveal-delay-3" id="skills">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-10 sm:mb-16">
                 <p class="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4 reveal-up"><span class="inline-block w-4 sm:w-6 h-px bg-indigo-400 mr-2 align-middle"></span>Capabilities</p>
                 <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold reveal-scale">Tech Stack</h2>
             </div>
-            <div class="flex flex-wrap justify-center gap-3 sm:gap-6 skills-grid">
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="95%" style="transition-delay: 0.05s"><i data-lucide="code-2" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">HTML5</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.1s"><i data-lucide="palette" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">CSS3</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="85%" style="transition-delay: 0.15s"><i data-lucide="file-json" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">JavaScript</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.2s"><i data-lucide="atom" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">React</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="70%" style="transition-delay: 0.25s"><i data-lucide="server" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Node.js</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="80%" style="transition-delay: 0.3s"><i data-lucide="database" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">PHP</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="75%" style="transition-delay: 0.35s"><i data-lucide="table" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">MySQL</span></div>
-                <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 reveal-scale" data-level="90%" style="transition-delay: 0.4s"><i data-lucide="wind" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Tailwind</span></div>
+            <div class="skills-marquee-wrapper relative overflow-hidden" id="skillsCarousel">
+                <div class="skills-marquee-track flex gap-4 sm:gap-6" id="skillsTrack">
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="95%"><i data-lucide="code-2" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">HTML5</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="90%"><i data-lucide="palette" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">CSS3</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="85%"><i data-lucide="file-json" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">JavaScript</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="75%"><i data-lucide="atom" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">React</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="70%"><i data-lucide="server" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Node.js</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="80%"><i data-lucide="database" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">PHP</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="75%"><i data-lucide="table" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">MySQL</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="90%"><i data-lucide="wind" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Tailwind</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="95%" aria-hidden="true"><i data-lucide="code-2" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">HTML5</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="90%" aria-hidden="true"><i data-lucide="palette" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">CSS3</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="85%" aria-hidden="true"><i data-lucide="file-json" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">JavaScript</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="75%" aria-hidden="true"><i data-lucide="atom" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">React</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="70%" aria-hidden="true"><i data-lucide="server" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Node.js</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="80%" aria-hidden="true"><i data-lucide="database" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">PHP</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="75%" aria-hidden="true"><i data-lucide="table" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">MySQL</span></div>
+                    <div class="glass-card skill-card rounded-xl sm:rounded-2xl p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center gap-1 sm:gap-2 flex-shrink-0" data-level="90%" aria-hidden="true"><i data-lucide="wind" class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400"></i><span class="text-[10px] sm:text-xs text-gray-400 font-mono">Tailwind</span></div>
+                </div>
             </div>
         </div>
     </section>
@@ -700,6 +819,7 @@
                 <a href="#about" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">About</a>
                 <a href="#work" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Work</a>
                 <a href="#skills" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Skills</a>
+                <a href="#pricing" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Pricing</a>
                 <a href="#contact" class="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm">Contact</a>
             </div>
             <div class="flex gap-3 sm:gap-4">
